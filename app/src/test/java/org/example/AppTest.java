@@ -5,10 +5,65 @@ package org.example;
 
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
+import org.junit.jupiter.api.BeforeEach;
 
 class AppTest {
-    @Test void appHasAGreeting() {
-        App classUnderTest = new App();
-        assertNotNull(classUnderTest.getGreeting(), "app should have a greeting");
+    private TriangleNumberCalculator calc;
+
+    @BeforeEach
+    public void setUp() {
+        calc = new TriangleNumberCalculator();
+    }
+
+    @Test
+    public void testValueZero() {
+        assertEquals(0, calc.value(0));
+    }
+
+    @Test
+    public void testValueOne() {
+        assertEquals(1, calc.value(1));
+    }
+
+    @Test
+    public void testValueSmallNumbers() {
+        assertEquals(3, calc.value(2));
+        assertEquals(6, calc.value(3));
+        assertEquals(10, calc.value(4));
+    }
+
+    @Test
+    public void testValueLargerNumber() {
+        assertEquals(5050, calc.value(100));
+    }
+
+    @Test
+    public void testAdd() {
+        assertEquals(16, calc.add(3, 4));
+    }
+
+    @Test
+    public void testAddSameNumber() {
+        assertEquals(12, calc.add(3, 3));
+    }
+
+    @Test
+    public void testAddWithZero() {
+        assertEquals(6, calc.add(3, 0));
+    }
+
+    @Test
+    public void testSubtract() {
+        assertEquals(4, calc.subtract(4, 3));
+    }
+
+    @Test
+    public void testSubtractSameNumber() {
+        assertEquals(0, calc.subtract(5, 5));
+    }
+
+    @Test
+    public void testSubtractNegativeResult() {
+        assertEquals(-4, calc.subtract(3, 4));
     }
 }
